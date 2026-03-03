@@ -23,11 +23,35 @@ Dokumentation og kravspecifikation — koden udvikles i Xcode.
 
 ```
 Frida-app/
-  CLAUDE.md              — Denne fil (serverinstruktioner)
-  CHANGELOG.md           — Aendringslog
-  KRAVSPECIFIKATION.md   — Features, datamodeller, roadmap
-  RESEARCH-AI-TRYON.md   — AI virtual try-on research
-  README.md              — GitHub readme
+  CLAUDE.md                          — Denne fil
+  CHANGELOG.md                       — Aendringslog
+  KRAVSPECIFIKATION.md               — Features, datamodeller, roadmap
+  RESEARCH-AI-TRYON.md               — AI virtual try-on research
+  .gitignore                         — Git ignore regler
+  Frida/
+    FridaApp.swift                   — App entry point (@main, SwiftData container)
+    ContentView.swift                — Tab navigation (4 tabs)
+    Models/
+      GarmentItem.swift              — GarmentItem model + enums (category, layer)
+      Outfit.swift                   — Outfit model + GarmentState
+      TryOnResult.swift              — TryOnResult model
+    ViewModels/
+      WardrobeViewModel.swift        — Garderobe logik (filter, soeg, CRUD)
+      StylingViewModel.swift         — Outfit builder logik (layers)
+      TryOnViewModel.swift           — Try-on flow (state machine)
+    Views/
+      Wardrobe/WardrobeView.swift    — Garderobe grid + tilfoej toej
+      Styling/StylingView.swift      — Outfit builder
+      Outfits/OutfitsView.swift      — Gemte outfits liste
+      TryOn/TryOnView.swift          — Virtual try-on (foto→AI→resultat)
+      Components/
+        GarmentCard.swift            — Toej-kort (grid item)
+        CategoryFilterBar.swift      — Kategori-filter chips
+        CameraView.swift             — UIKit kamera wrapper
+        ColorExtension.swift         — Color hex extension
+    Services/
+      TryOnAPIService.swift          — HF Spaces + Gemini API integration
+    Assets.xcassets/                 — App ikon, farver
 ```
 
 ## App-features
@@ -49,7 +73,13 @@ Tops, Bukser, Nederdele, Kjoler, Jakker, Sko, Accessories
 ### Datamodeller
 - GarmentItem (SwiftData) — tojstykke med kategori, billede, tags, worn-count
 - Outfit (SwiftData) — samling af garments med states og layers
+- TryOnResult (SwiftData) — try-on resultat med person/toej/resultat billeder
 - GarmentState (struct) — position, openness, rolled
+
+### Try-On Providers
+- Kolors-VTON (HF Spaces, gratis)
+- IDM-VTON (HF Spaces, gratis)
+- Google Gemini (API key paakraevet)
 
 ## Vigtige regler
 - Dokumentation skrives paa dansk

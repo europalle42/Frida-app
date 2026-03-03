@@ -21,3 +21,18 @@
   - Arkitekturdiagram for iOS-integration
 - Opdateret `KRAVSPECIFIKATION.md` med ny Tab 4 (Virtual Try-On)
 - Opdateret `CLAUDE.md` med AI tech stack
+
+### Tilfojet (komplet Swift kodebase)
+- Fuld iOS app i `Frida/` mappen (klar til Xcode-projekt)
+- **App:** FridaApp.swift (entry point), ContentView.swift (4 tabs)
+- **Models:** GarmentItem, Outfit, TryOnResult (alle SwiftData)
+- **ViewModels:** WardrobeViewModel, StylingViewModel, TryOnViewModel
+- **Views:**
+  - Tab 1: WardrobeView — grid med kategori-filter, soegning, foto-upload
+  - Tab 2: StylingView — outfit builder med layer-system
+  - Tab 3: OutfitsView — gemte outfits med billeder
+  - Tab 4: TryOnView — virtual try-on flow (foto→vaelg toej→AI→resultat)
+- **Components:** GarmentCard, CategoryFilterBar, CameraView, Color+hex
+- **Services:** TryOnAPIService (HF Spaces Gradio + Gemini API)
+- `.gitignore` for Xcode/Swift
+- Assets.xcassets med AccentColor
