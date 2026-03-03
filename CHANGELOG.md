@@ -36,3 +36,15 @@
 - **Services:** TryOnAPIService (HF Spaces Gradio + Gemini API)
 - `.gitignore` for Xcode/Swift
 - Assets.xcassets med AccentColor
+
+### Tilfojet (Xcode projekt + gratis API'er)
+- `project.yml` (xcodegen) — genererer Frida.xcodeproj automatisk
+- Omskrevet `TryOnAPIService.swift` med korrekte gratis API'er:
+  - IDM-VTON (yisol) via HF Spaces Gradio REST — gratis, Zero GPU
+  - Kolors-VTON (Kwai-Kolors) via HF Spaces Gradio REST — gratis
+  - Gemini 2.0 Flash — gratis tier (15 req/min, key fra aistudio.google.com)
+  - Ingen API keys paakraevet for HF Spaces
+- Billedkomprimering foer upload (max 1024px person, 768px toej)
+- Retry-logik for Zero GPU cold starts (503 → vent 15s → retry)
+- Space health check (/info endpoint) foer API-kald
+- Testet og bygget paa iPhone 17 Pro simulator
