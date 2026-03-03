@@ -2,11 +2,12 @@
 
 ## Oversigt
 
-Frida er en iOS-app til styring af din garderobe. Du kan registrere dit toj, bygge outfits og gemme dem til senere.
+Frida er en iOS-app til styring af din garderobe med AI-drevet virtual try-on. Du kan registrere dit toj, bygge outfits, gemme dem — og proeve tojet virtuelt paa dig selv via kamera eller foto.
 
 **Platform:** iOS (iPhone)
-**Teknologi:** SwiftUI + SwiftData
+**Teknologi:** SwiftUI + SwiftData + ARKit + Vision + Core ML
 **Arkitektur:** MVVM
+**AI Backend:** CatVTON (primaer), Hugging Face Spaces (fallback)
 
 ---
 
@@ -110,13 +111,45 @@ Liste over gemte outfits.
 - MVVM arkitektur
 - Ingen externe dependencies
 
-**Planlagt til v2:**
-- Kamera/billede-upload af toj
-- Advanced model-rendering (visuelt paa en figur)
-- Image processing og farveudtraek
+### 4. Virtual Try-On (Tab 4 — ny)
+
+AI-drevet virtual try-on: se tojet paa dig selv.
+
+- Tag selfie eller vaelg foto fra bibliotek
+- Vaelg toj fra garderoben
+- AI genererer realistisk billede med tojet paa dig
+- Gem/del resultater
+
+**On-device (Apple frameworks):**
+- Vision Framework: 3D body pose detection (19 body points)
+- Person Segmentation: isoler person fra baggrund
+- ARKit + ARSkeleton3D: live body tracking i kamera
+- Core ML: on-device AI inference
+
+**Cloud API (try-on generation):**
+- Primaer: CatVTON (self-hosted, <8 GB VRAM)
+- Fallback: Hugging Face Spaces (Kolors-VTON, IDM-VTON)
+- Alternativ: Google Gemini API
+
+**Flow:**
+1. Bruger tager selfie eller vaelger foto
+2. Vision/ARKit detekterer krop og pose
+3. Person Segmentation isolerer personen
+4. Toj-billede + person sendes til CatVTON API
+5. Resultat vises i appen
+
+Se `RESEARCH-AI-TRYON.md` for fuld teknisk research.
+
+---
+
+## Planlagt (v2+)
+
 - Komplekst state-system (position, openness, rolled)
 - Outfit-forslag baseret paa vejr/lejlighed
 - Statistik (mest brugte items, outfit-frekvens)
+- Live AR try-on (real-time i kamera)
+- Multi-view try-on (MV-VTON)
+- Social deling af outfits
 
 ---
 
