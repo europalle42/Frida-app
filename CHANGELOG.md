@@ -1,5 +1,10 @@
 # Changelog – Frida App
 
+## 2026-09-28
+
+### Tilføjet
+- `GOSSIP-HARBOR-CHEATSHEET.md` — cheat sheet med strategi-tips til iOS-spillet Gossip Harbor
+
 ## 2026-03-03
 
 ### Tilføjet
