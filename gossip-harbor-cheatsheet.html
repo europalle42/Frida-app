@@ -1,0 +1,238 @@
+<title>Gossip Harbor Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#EEF4F3; --surface:#FFFFFF; --ink:#13262E; --muted:#4E6770;
+  --line:#CFDEDC; --navy:#173A4A; --teal:#1F7A76; --buoy:#F2B63D;
+  --good:#2C7A4B; --bad:#B23A3A; --chip:#E1ECEA;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body:"Figtree", -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#0E1C22; --surface:#15272F; --ink:#E6F0EE; --muted:#9DB4B9;
+    --line:#26404A; --navy:#9FD3D0; --teal:#5CC1BA; --buoy:#F2B63D;
+    --good:#6FCB93; --bad:#EE8A8A; --chip:#1D343D;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#0E1C22; --surface:#15272F; --ink:#E6F0EE; --muted:#9DB4B9;
+  --line:#26404A; --navy:#9FD3D0; --teal:#5CC1BA; --buoy:#F2B63D;
+  --good:#6FCB93; --bad:#EE8A8A; --chip:#1D343D;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:16px/1.6 var(--body);padding:0 16px}
+.wrap{max-width:880px;margin:0 auto;padding-block:32px 64px;display:grid;gap:28px}
+header{display:grid;gap:10px}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+h1{font:800 clamp(2rem,6vw,3.2rem)/1.05 var(--display);margin:0;color:var(--navy);text-wrap:balance}
+h2{font:700 1.35rem/1.2 var(--display);margin:0;color:var(--navy);text-wrap:balance;display:flex;align-items:baseline;gap:10px}
+h2 .n{font:600 .8rem/1 var(--body);color:var(--muted);font-variant-numeric:tabular-nums}
+p{margin:0;max-width:65ch}
+.lede{color:var(--muted)}
+.note{border:1px solid var(--line);border-left:4px solid var(--buoy);background:var(--surface);padding:12px 14px;border-radius:6px;font-size:.95rem;max-width:none}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);padding-block:10px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
+nav a{flex:none;font:600 .85rem/1 var(--body);color:var(--ink);text-decoration:none;background:var(--chip);padding:8px 12px;border-radius:999px}
+nav a:hover,nav a:focus-visible{background:var(--teal);color:var(--ground);outline:none}
+section{display:grid;gap:12px;scroll-margin-top:64px}
+ul{margin:0;padding-left:1.2em;display:grid;gap:6px;max-width:65ch}
+li::marker{color:var(--teal)}
+strong{color:var(--navy)}
+.loop{list-style:none;padding:0;counter-reset:s;display:grid;gap:8px;max-width:none}
+.loop li{counter-increment:s;display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start}
+.loop li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--buoy);color:#13262E;font:700 .9rem/28px var(--display);text-align:center}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px;align-content:start}
+.box h3{margin:0;font:700 .8rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase}
+.do h3{color:var(--good)} .dont h3{color:var(--bad)}
+.box ul{padding-left:1.1em}
+.tip{background:var(--navy);color:var(--ground);border-radius:8px;padding:14px 16px;max-width:none}
+.tip strong{color:var(--buoy)}
+.check{list-style:none;padding:0;max-width:none;display:grid;gap:6px}
+.check label{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--teal);flex:none}
+.check input:checked + span{text-decoration:line-through;color:var(--muted)}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{font:600 .85rem/1 var(--body);background:transparent;color:var(--teal);border:1px solid var(--teal);border-radius:999px;padding:8px 14px;cursor:pointer}
+button:focus-visible,.check label:focus-within{outline:2px solid var(--buoy);outline-offset:2px}
+.count{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 .8rem/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--chip)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+footer{color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Gossip Harbor: Merge &amp; Story · iOS</div>
+    <h1>Harbor cheat sheet</h1>
+    <p class="lede">Strategy tips for getting further on less energy. Only fair play: no hacks, modded apps or "free gems" generators. Those are scams, or they get your account banned.</p>
+    <p class="note">Energy caps, timers and prices change between game updates and events, so treat the numbers here as rules of thumb.</p>
+  </header>
+
+  <nav aria-label="Sections">
+    <a href="#loop">Loop</a><a href="#energy">Energy</a><a href="#board">Board</a><a href="#orders">Orders</a><a href="#producers">Producers</a><a href="#bubbles">Bubbles</a><a href="#gems">Gems</a><a href="#events">Events</a><a href="#daily">Daily</a><a href="#account">Account</a><a href="#glossary">Glossary</a>
+  </nav>
+
+  <section id="loop">
+    <h2>Core loop in 30 seconds</h2>
+    <ol class="loop">
+      <li><span><strong>Tap producers</strong> to spend energy and spawn level-1 items.</span></li>
+      <li><span><strong>Drag two identical items together</strong> to merge them into the next level.</span></li>
+      <li><span><strong>Fill orders</strong> from customers at the top of the board for coins and XP.</span></li>
+      <li><span><strong>Spend your rewards</strong> on renovation tasks to unlock story chapters and new areas.</span></li>
+    </ol>
+    <p>Energy is the limit on everything. Most of the tips below help you get more out of it.</p>
+  </section>
+
+  <section id="energy">
+    <h2>Energy</h2>
+    <div class="two">
+      <div class="box do"><h3>Do</h3><ul>
+        <li>Spend energy before it reaches the cap. A full bar stops refilling.</li>
+        <li>Claim free energy from daily tasks, the mailbox, level-ups and events.</li>
+        <li>Check the shop every day for free or ad-based energy.</li>
+        <li>Save energy for events with double rewards.</li>
+      </ul></div>
+      <div class="box dont"><h3>Don't</h3><ul>
+        <li>Leave the bar full overnight.</li>
+        <li>Buy energy with gems early in the game.</li>
+        <li>Tap producers for items no order needs.</li>
+        <li>Use x2/x4 energy boosters before you know the item chains.</li>
+      </ul></div>
+    </div>
+    <p class="tip"><strong>Level-ups usually give energy.</strong> When you're close to a level-up, spend your energy first so the reward doesn't push you over the cap.</p>
+  </section>
+
+  <section id="board">
+    <h2>Board management</h2>
+    <ul>
+      <li><strong>Keep about a third of the board empty.</strong> A full board blocks new spawns and bonus items.</li>
+      <li><strong>Sell junk.</strong> Tap an item and sell it for coins if no current order needs its chain.</li>
+      <li><strong>Use storage.</strong> Park high-level items and pieces for future orders there. Extra slots are one of the best gem buys.</li>
+      <li><strong>Group by chain.</strong> Keep items from the same producer together so pairs are easy to spot.</li>
+      <li><strong>Don't merge blindly.</strong> Orders often ask for a specific level, and merging past it wastes the item.</li>
+    </ul>
+  </section>
+
+  <section id="orders">
+    <h2>Orders</h2>
+    <ul>
+      <li>Do the orders that <strong>finish a story task</strong> or pay the most first.</li>
+      <li>Read all open orders before merging. One item might cover two customers.</li>
+      <li>Orders with a clock or special icon are often event or bonus orders. Do those first.</li>
+      <li>If an order needs a chain you don't have yet, leave it. It will wait.</li>
+    </ul>
+  </section>
+
+  <section id="producers">
+    <h2>Producers</h2>
+    <ul>
+      <li>Merge producers to upgrade them. Higher levels spawn better items and more per charge.</li>
+      <li>Don't pay gems to skip a recharge unless an event is about to end.</li>
+      <li>Some producers run out after a set number of taps. Use those taps for orders only.</li>
+      <li>Open chests and boxes from merges when you have room on the board.</li>
+    </ul>
+  </section>
+
+  <section id="bubbles">
+    <h2>Bubbles</h2>
+    <ul>
+      <li>Merging high-level items sometimes spawns a <strong>bubble</strong> holding a bonus copy.</li>
+      <li>Popping it costs gems. If you wait, it turns into a few coins.</li>
+      <li>Pop it only if the item is high-level, needed for an order, or would cost a lot of energy to rebuild.</li>
+    </ul>
+  </section>
+
+  <section id="gems">
+    <h2>Gems</h2>
+    <div class="two">
+      <div class="box do"><h3>Worth it</h3><ul>
+        <li>Extra storage slots</li>
+        <li>A bubble with a very high-level item</li>
+        <li>Finishing an event milestone just before it ends</li>
+      </ul></div>
+      <div class="box dont"><h3>Waste</h3><ul>
+        <li>Buying energy early on</li>
+        <li>Skipping short producer timers</li>
+        <li>Speeding up anything that finishes while you sleep</li>
+      </ul></div>
+    </div>
+    <p>Free gems come from achievements, level-ups, daily tasks, event milestones and mailbox gifts.</p>
+  </section>
+
+  <section id="events">
+    <h2>Events</h2>
+    <ul>
+      <li>Events (races, collection or dig events, seasonal chapters) pay <strong>far more per energy</strong> than the main board.</li>
+      <li>Read the rules once. Many events use their own board or tokens.</li>
+      <li><strong>Races:</strong> join early in the day and spend saved energy in one burst.</li>
+      <li>If you can see a new event coming, save some energy and items for it.</li>
+      <li>Claim milestone rewards before the timer ends. Unclaimed rewards can be lost.</li>
+    </ul>
+  </section>
+
+  <section id="daily">
+    <h2>Daily routine <span class="n">about 5 minutes</span></h2>
+    <ul class="check" id="checklist">
+      <li><label><input type="checkbox" id="d1"><span>Collect mailbox and daily gifts</span></label></li>
+      <li><label><input type="checkbox" id="d2"><span>Claim free shop items</span></label></li>
+      <li><label><input type="checkbox" id="d3"><span>Spend energy so the bar isn't full</span></label></li>
+      <li><label><input type="checkbox" id="d4"><span>Complete daily tasks</span></label></li>
+      <li><label><input type="checkbox" id="d5"><span>Check event progress and timers</span></label></li>
+      <li><label><input type="checkbox" id="d6"><span>Sell junk and tidy storage</span></label></li>
+    </ul>
+    <div class="row"><span class="count" id="count">0 of 6 done</span><button type="button" id="reset">Clear checklist</button></div>
+  </section>
+
+  <section id="account">
+    <h2>Account and settings</h2>
+    <ul>
+      <li><strong>Link your account</strong> (Game Center, Facebook or in-game ID) so your progress moves to a new phone.</li>
+      <li>Turn on the <strong>"energy full"</strong> notification so you never waste a refill.</li>
+      <li>An iCloud backup alone won't restore your game without a linked account.</li>
+      <li>For lost purchases, contact support in the game's settings and include your player ID.</li>
+    </ul>
+  </section>
+
+  <section id="glossary">
+    <h2>Glossary</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>Producer</td><td>Item you tap to spawn the first items of a chain</td></tr>
+        <tr><td>Chain</td><td>All levels of one item family</td></tr>
+        <tr><td>Order</td><td>A customer request at the top of the board</td></tr>
+        <tr><td>XP / level</td><td>Earned from orders; levels unlock new content</td></tr>
+        <tr><td>Bubble</td><td>Temporary bonus item you pay gems to keep</td></tr>
+        <tr><td>Storage</td><td>Slots off the board for saving items</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <footer>Checklist ticks are saved on this device only and clear themselves each new day.</footer>
+</div>
+
+<script>
+(function(){
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#checklist input'));
+  var count = document.getElementById('count');
+  var today = new Date().toDateString();
+  var KEY = 'gh-daily';
+  function load(){ try { var s = JSON.parse(localStorage.getItem(KEY) || 'null'); return s && s.day === today ? s.done : []; } catch(e){ return []; } }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify({day: today, done: boxes.filter(function(b){return b.checked;}).map(function(b){return b.id;})})); } catch(e){} }
+  function update(){ var n = boxes.filter(function(b){return b.checked;}).length; count.textContent = n + ' of ' + boxes.length + ' done'; }
+  var done = load();
+  boxes.forEach(function(b){ b.checked = done.indexOf(b.id) !== -1; b.addEventListener('change', function(){ save(); update(); }); });
+  document.getElementById('reset').addEventListener('click', function(){ boxes.forEach(function(b){ b.checked = false; }); save(); update(); });
+  update();
+})();
+</script>
