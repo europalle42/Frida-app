@@ -8,6 +8,7 @@
 - HTML-siden omskrevet til spillere efter level 117 (energiflasker, appelsintræer, events, lager)
 - HTML-siden oversat til dansk
 - Nyt afsnit "Skjulte tricks og easter eggs" (energi-links, generator-booster, Easter Egg Quest)
+- Fjernet tips, der kun stammede fra clickbait-kilder (appelsintræer, pakke-merging, energital)
 
 ## 2026-03-03
 
