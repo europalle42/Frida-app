@@ -7,6 +7,7 @@
 - `gossip-harbor-cheatsheet.html` — samme cheat sheet som HTML-side med daglig tjekliste
 - HTML-siden omskrevet til spillere efter level 117 (energiflasker, appelsintræer, events, lager)
 - HTML-siden oversat til dansk
+- Nyt afsnit "Skjulte tricks og easter eggs" (energi-links, generator-booster, Easter Egg Quest)
 
 ## 2026-03-03
 
