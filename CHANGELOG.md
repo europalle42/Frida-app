@@ -6,6 +6,7 @@
 - `GOSSIP-HARBOR-CHEATSHEET.md` — cheat sheet med strategi-tips til iOS-spillet Gossip Harbor
 - `gossip-harbor-cheatsheet.html` — samme cheat sheet som HTML-side med daglig tjekliste
 - HTML-siden omskrevet til spillere efter level 117 (energiflasker, appelsintræer, events, lager)
+- HTML-siden oversat til dansk
 
 ## 2026-03-03
 
